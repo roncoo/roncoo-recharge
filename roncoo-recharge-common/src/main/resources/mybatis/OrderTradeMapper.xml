@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.roncoo.recharge.common.dao.impl.mapper.OrderTradeMapper" >
+  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.OrderTrade" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="order_status" property="orderStatus" jdbcType="TINYINT" />
+    <result column="user_info_id" property="userInfoId" jdbcType="BIGINT" />
+    <result column="acct_info_id" property="acctInfoId" jdbcType="BIGINT" />
+    <result column="item_supply_id" property="itemSupplyId" jdbcType="BIGINT" />
+    <result column="item_id" property="itemId" jdbcType="BIGINT" />
+    <result column="item_category" property="itemCategory" jdbcType="TINYINT" />
+    <result column="item_type" property="itemType" jdbcType="TINYINT" />
+    <result column="item_no" property="itemNo" jdbcType="VARCHAR" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="sales_price" property="salesPrice" jdbcType="INTEGER" />
+    <result column="face_price" property="facePrice" jdbcType="VARCHAR" />
+    <result column="cost_price" property="costPrice" jdbcType="INTEGER" />
+    <result column="actual_cost" property="actualCost" jdbcType="INTEGER" />
+    <result column="mobile" property="mobile" jdbcType="CHAR" />
+    <result column="channel" property="channel" jdbcType="TINYINT" />
+    <result column="trade_no" property="tradeNo" jdbcType="BIGINT" />
+    <result column="pay_serial_no" property="paySerialNo" jdbcType="BIGINT" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="carrier_type" property="carrierType" jdbcType="TINYINT" />
+    <result column="supply_desc" property="supplyDesc" jdbcType="VARCHAR" />
+    <result column="supply_count" property="supplyCount" jdbcType="INTEGER" />
+    <result column="supply_index" property="supplyIndex" jdbcType="INTEGER" />
+    <result column="notify_url" property="notifyUrl" jdbcType="VARCHAR" />
+    <result column="flow_mode" property="flowMode" jdbcType="TINYINT" />
+    <result column="flow_scope" property="flowScope" jdbcType="TINYINT" />
+    <result column="flow_package_type" property="flowPackageType" jdbcType="TINYINT" />
+    <result column="flow_stream_type" property="flowStreamType" jdbcType="TINYINT" />
+    <result column="card_no" property="cardNo" jdbcType="VARCHAR" />
+    <result column="card_pwd" property="cardPwd" jdbcType="VARCHAR" />
+    <result column="repeat_type" property="repeatType" jdbcType="TINYINT" />
+    <result column="supply_serial_no" property="supplySerialNo" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, order_status, user_info_id, acct_info_id, item_supply_id, 
+    item_id, item_category, item_type, item_no, item_name, sales_price, face_price, cost_price, 
+    actual_cost, mobile, channel, trade_no, pay_serial_no, order_no, order_time, carrier_type, 
+    supply_desc, supply_count, supply_index, notify_url, flow_mode, flow_scope, flow_package_type, 
+    flow_stream_type, card_no, card_pwd, repeat_type, supply_serial_no
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.OrderTradeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order_trade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_trade
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order_trade
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.OrderTradeExample" >
+    delete from order_trade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.OrderTrade" >
+    insert into order_trade (id, gmt_create, gmt_modified, 
+      order_status, user_info_id, acct_info_id, 
+      item_supply_id, item_id, item_category, 
+      item_type, item_no, item_name, 
+      sales_price, face_price, cost_price, 
+      actual_cost, mobile, channel, 
+      trade_no, pay_serial_no, order_no, 
+      order_time, carrier_type, supply_desc, 
+      supply_count, supply_index, notify_url, 
+      flow_mode, flow_scope, flow_package_type, 
+      flow_stream_type, card_no, card_pwd, 
+      repeat_type, supply_serial_no)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{orderStatus,jdbcType=TINYINT}, #{userInfoId,jdbcType=BIGINT}, #{acctInfoId,jdbcType=BIGINT}, 
+      #{itemSupplyId,jdbcType=BIGINT}, #{itemId,jdbcType=BIGINT}, #{itemCategory,jdbcType=TINYINT}, 
+      #{itemType,jdbcType=TINYINT}, #{itemNo,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
+      #{salesPrice,jdbcType=INTEGER}, #{facePrice,jdbcType=VARCHAR}, #{costPrice,jdbcType=INTEGER}, 
+      #{actualCost,jdbcType=INTEGER}, #{mobile,jdbcType=CHAR}, #{channel,jdbcType=TINYINT}, 
+      #{tradeNo,jdbcType=BIGINT}, #{paySerialNo,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, 
+      #{orderTime,jdbcType=TIMESTAMP}, #{carrierType,jdbcType=TINYINT}, #{supplyDesc,jdbcType=VARCHAR}, 
+      #{supplyCount,jdbcType=INTEGER}, #{supplyIndex,jdbcType=INTEGER}, #{notifyUrl,jdbcType=VARCHAR}, 
+      #{flowMode,jdbcType=TINYINT}, #{flowScope,jdbcType=TINYINT}, #{flowPackageType,jdbcType=TINYINT}, 
+      #{flowStreamType,jdbcType=TINYINT}, #{cardNo,jdbcType=VARCHAR}, #{cardPwd,jdbcType=VARCHAR}, 
+      #{repeatType,jdbcType=TINYINT}, #{supplySerialNo,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.OrderTrade" >
+    insert into order_trade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="userInfoId != null" >
+        user_info_id,
+      </if>
+      <if test="acctInfoId != null" >
+        acct_info_id,
+      </if>
+      <if test="itemSupplyId != null" >
+        item_supply_id,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="itemCategory != null" >
+        item_category,
+      </if>
+      <if test="itemType != null" >
+        item_type,
+      </if>
+      <if test="itemNo != null" >
+        item_no,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="salesPrice != null" >
+        sales_price,
+      </if>
+      <if test="facePrice != null" >
+        face_price,
+      </if>
+      <if test="costPrice != null" >
+        cost_price,
+      </if>
+      <if test="actualCost != null" >
+        actual_cost,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="paySerialNo != null" >
+        pay_serial_no,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="carrierType != null" >
+        carrier_type,
+      </if>
+      <if test="supplyDesc != null" >
+        supply_desc,
+      </if>
+      <if test="supplyCount != null" >
+        supply_count,
+      </if>
+      <if test="supplyIndex != null" >
+        supply_index,
+      </if>
+      <if test="notifyUrl != null" >
+        notify_url,
+      </if>
+      <if test="flowMode != null" >
+        flow_mode,
+      </if>
+      <if test="flowScope != null" >
+        flow_scope,
+      </if>
+      <if test="flowPackageType != null" >
+        flow_package_type,
+      </if>
+      <if test="flowStreamType != null" >
+        flow_stream_type,
+      </if>
+      <if test="cardNo != null" >
+        card_no,
+      </if>
+      <if test="cardPwd != null" >
+        card_pwd,
+      </if>
+      <if test="repeatType != null" >
+        repeat_type,
+      </if>
+      <if test="supplySerialNo != null" >
+        supply_serial_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="userInfoId != null" >
+        #{userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="acctInfoId != null" >
+        #{acctInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="itemSupplyId != null" >
+        #{itemSupplyId,jdbcType=BIGINT},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="itemCategory != null" >
+        #{itemCategory,jdbcType=TINYINT},
+      </if>
+      <if test="itemType != null" >
+        #{itemType,jdbcType=TINYINT},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="salesPrice != null" >
+        #{salesPrice,jdbcType=INTEGER},
+      </if>
+      <if test="facePrice != null" >
+        #{facePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="costPrice != null" >
+        #{costPrice,jdbcType=INTEGER},
+      </if>
+      <if test="actualCost != null" >
+        #{actualCost,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=CHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=TINYINT},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="paySerialNo != null" >
+        #{paySerialNo,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carrierType != null" >
+        #{carrierType,jdbcType=TINYINT},
+      </if>
+      <if test="supplyDesc != null" >
+        #{supplyDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyCount != null" >
+        #{supplyCount,jdbcType=INTEGER},
+      </if>
+      <if test="supplyIndex != null" >
+        #{supplyIndex,jdbcType=INTEGER},
+      </if>
+      <if test="notifyUrl != null" >
+        #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="flowMode != null" >
+        #{flowMode,jdbcType=TINYINT},
+      </if>
+      <if test="flowScope != null" >
+        #{flowScope,jdbcType=TINYINT},
+      </if>
+      <if test="flowPackageType != null" >
+        #{flowPackageType,jdbcType=TINYINT},
+      </if>
+      <if test="flowStreamType != null" >
+        #{flowStreamType,jdbcType=TINYINT},
+      </if>
+      <if test="cardNo != null" >
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardPwd != null" >
+        #{cardPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="repeatType != null" >
+        #{repeatType,jdbcType=TINYINT},
+      </if>
+      <if test="supplySerialNo != null" >
+        #{supplySerialNo,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.OrderTradeExample" resultType="java.lang.Integer" >
+    select count(*) from order_trade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order_trade
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.gmtCreate != null" >
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModified != null" >
+        gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderStatus != null" >
+        order_status = #{record.orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.userInfoId != null" >
+        user_info_id = #{record.userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.acctInfoId != null" >
+        acct_info_id = #{record.acctInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.itemSupplyId != null" >
+        item_supply_id = #{record.itemSupplyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.itemId != null" >
+        item_id = #{record.itemId,jdbcType=BIGINT},
+      </if>
+      <if test="record.itemCategory != null" >
+        item_category = #{record.itemCategory,jdbcType=TINYINT},
+      </if>
+      <if test="record.itemType != null" >
+        item_type = #{record.itemType,jdbcType=TINYINT},
+      </if>
+      <if test="record.itemNo != null" >
+        item_no = #{record.itemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemName != null" >
+        item_name = #{record.itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salesPrice != null" >
+        sales_price = #{record.salesPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.facePrice != null" >
+        face_price = #{record.facePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.costPrice != null" >
+        cost_price = #{record.costPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.actualCost != null" >
+        actual_cost = #{record.actualCost,jdbcType=INTEGER},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=CHAR},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=TINYINT},
+      </if>
+      <if test="record.tradeNo != null" >
+        trade_no = #{record.tradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.paySerialNo != null" >
+        pay_serial_no = #{record.paySerialNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderNo != null" >
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderTime != null" >
+        order_time = #{record.orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.carrierType != null" >
+        carrier_type = #{record.carrierType,jdbcType=TINYINT},
+      </if>
+      <if test="record.supplyDesc != null" >
+        supply_desc = #{record.supplyDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplyCount != null" >
+        supply_count = #{record.supplyCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.supplyIndex != null" >
+        supply_index = #{record.supplyIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.notifyUrl != null" >
+        notify_url = #{record.notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowMode != null" >
+        flow_mode = #{record.flowMode,jdbcType=TINYINT},
+      </if>
+      <if test="record.flowScope != null" >
+        flow_scope = #{record.flowScope,jdbcType=TINYINT},
+      </if>
+      <if test="record.flowPackageType != null" >
+        flow_package_type = #{record.flowPackageType,jdbcType=TINYINT},
+      </if>
+      <if test="record.flowStreamType != null" >
+        flow_stream_type = #{record.flowStreamType,jdbcType=TINYINT},
+      </if>
+      <if test="record.cardNo != null" >
+        card_no = #{record.cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardPwd != null" >
+        card_pwd = #{record.cardPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repeatType != null" >
+        repeat_type = #{record.repeatType,jdbcType=TINYINT},
+      </if>
+      <if test="record.supplySerialNo != null" >
+        supply_serial_no = #{record.supplySerialNo,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order_trade
+    set id = #{record.id,jdbcType=BIGINT},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      order_status = #{record.orderStatus,jdbcType=TINYINT},
+      user_info_id = #{record.userInfoId,jdbcType=BIGINT},
+      acct_info_id = #{record.acctInfoId,jdbcType=BIGINT},
+      item_supply_id = #{record.itemSupplyId,jdbcType=BIGINT},
+      item_id = #{record.itemId,jdbcType=BIGINT},
+      item_category = #{record.itemCategory,jdbcType=TINYINT},
+      item_type = #{record.itemType,jdbcType=TINYINT},
+      item_no = #{record.itemNo,jdbcType=VARCHAR},
+      item_name = #{record.itemName,jdbcType=VARCHAR},
+      sales_price = #{record.salesPrice,jdbcType=INTEGER},
+      face_price = #{record.facePrice,jdbcType=VARCHAR},
+      cost_price = #{record.costPrice,jdbcType=INTEGER},
+      actual_cost = #{record.actualCost,jdbcType=INTEGER},
+      mobile = #{record.mobile,jdbcType=CHAR},
+      channel = #{record.channel,jdbcType=TINYINT},
+      trade_no = #{record.tradeNo,jdbcType=BIGINT},
+      pay_serial_no = #{record.paySerialNo,jdbcType=BIGINT},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      order_time = #{record.orderTime,jdbcType=TIMESTAMP},
+      carrier_type = #{record.carrierType,jdbcType=TINYINT},
+      supply_desc = #{record.supplyDesc,jdbcType=VARCHAR},
+      supply_count = #{record.supplyCount,jdbcType=INTEGER},
+      supply_index = #{record.supplyIndex,jdbcType=INTEGER},
+      notify_url = #{record.notifyUrl,jdbcType=VARCHAR},
+      flow_mode = #{record.flowMode,jdbcType=TINYINT},
+      flow_scope = #{record.flowScope,jdbcType=TINYINT},
+      flow_package_type = #{record.flowPackageType,jdbcType=TINYINT},
+      flow_stream_type = #{record.flowStreamType,jdbcType=TINYINT},
+      card_no = #{record.cardNo,jdbcType=VARCHAR},
+      card_pwd = #{record.cardPwd,jdbcType=VARCHAR},
+      repeat_type = #{record.repeatType,jdbcType=TINYINT},
+      supply_serial_no = #{record.supplySerialNo,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.OrderTrade" >
+    update order_trade
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="userInfoId != null" >
+        user_info_id = #{userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="acctInfoId != null" >
+        acct_info_id = #{acctInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="itemSupplyId != null" >
+        item_supply_id = #{itemSupplyId,jdbcType=BIGINT},
+      </if>
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="itemCategory != null" >
+        item_category = #{itemCategory,jdbcType=TINYINT},
+      </if>
+      <if test="itemType != null" >
+        item_type = #{itemType,jdbcType=TINYINT},
+      </if>
+      <if test="itemNo != null" >
+        item_no = #{itemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="salesPrice != null" >
+        sales_price = #{salesPrice,jdbcType=INTEGER},
+      </if>
+      <if test="facePrice != null" >
+        face_price = #{facePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="costPrice != null" >
+        cost_price = #{costPrice,jdbcType=INTEGER},
+      </if>
+      <if test="actualCost != null" >
+        actual_cost = #{actualCost,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=CHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=TINYINT},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="paySerialNo != null" >
+        pay_serial_no = #{paySerialNo,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carrierType != null" >
+        carrier_type = #{carrierType,jdbcType=TINYINT},
+      </if>
+      <if test="supplyDesc != null" >
+        supply_desc = #{supplyDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyCount != null" >
+        supply_count = #{supplyCount,jdbcType=INTEGER},
+      </if>
+      <if test="supplyIndex != null" >
+        supply_index = #{supplyIndex,jdbcType=INTEGER},
+      </if>
+      <if test="notifyUrl != null" >
+        notify_url = #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="flowMode != null" >
+        flow_mode = #{flowMode,jdbcType=TINYINT},
+      </if>
+      <if test="flowScope != null" >
+        flow_scope = #{flowScope,jdbcType=TINYINT},
+      </if>
+      <if test="flowPackageType != null" >
+        flow_package_type = #{flowPackageType,jdbcType=TINYINT},
+      </if>
+      <if test="flowStreamType != null" >
+        flow_stream_type = #{flowStreamType,jdbcType=TINYINT},
+      </if>
+      <if test="cardNo != null" >
+        card_no = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardPwd != null" >
+        card_pwd = #{cardPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="repeatType != null" >
+        repeat_type = #{repeatType,jdbcType=TINYINT},
+      </if>
+      <if test="supplySerialNo != null" >
+        supply_serial_no = #{supplySerialNo,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.OrderTrade" >
+    update order_trade
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      order_status = #{orderStatus,jdbcType=TINYINT},
+      user_info_id = #{userInfoId,jdbcType=BIGINT},
+      acct_info_id = #{acctInfoId,jdbcType=BIGINT},
+      item_supply_id = #{itemSupplyId,jdbcType=BIGINT},
+      item_id = #{itemId,jdbcType=BIGINT},
+      item_category = #{itemCategory,jdbcType=TINYINT},
+      item_type = #{itemType,jdbcType=TINYINT},
+      item_no = #{itemNo,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      sales_price = #{salesPrice,jdbcType=INTEGER},
+      face_price = #{facePrice,jdbcType=VARCHAR},
+      cost_price = #{costPrice,jdbcType=INTEGER},
+      actual_cost = #{actualCost,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=CHAR},
+      channel = #{channel,jdbcType=TINYINT},
+      trade_no = #{tradeNo,jdbcType=BIGINT},
+      pay_serial_no = #{paySerialNo,jdbcType=BIGINT},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      order_time = #{orderTime,jdbcType=TIMESTAMP},
+      carrier_type = #{carrierType,jdbcType=TINYINT},
+      supply_desc = #{supplyDesc,jdbcType=VARCHAR},
+      supply_count = #{supplyCount,jdbcType=INTEGER},
+      supply_index = #{supplyIndex,jdbcType=INTEGER},
+      notify_url = #{notifyUrl,jdbcType=VARCHAR},
+      flow_mode = #{flowMode,jdbcType=TINYINT},
+      flow_scope = #{flowScope,jdbcType=TINYINT},
+      flow_package_type = #{flowPackageType,jdbcType=TINYINT},
+      flow_stream_type = #{flowStreamType,jdbcType=TINYINT},
+      card_no = #{cardNo,jdbcType=VARCHAR},
+      card_pwd = #{cardPwd,jdbcType=VARCHAR},
+      repeat_type = #{repeatType,jdbcType=TINYINT},
+      supply_serial_no = #{supplySerialNo,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

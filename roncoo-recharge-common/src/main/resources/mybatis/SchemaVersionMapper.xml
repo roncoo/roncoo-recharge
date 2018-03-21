@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.roncoo.recharge.common.mapper.SchemaVersionMapper" >
+  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.SchemaVersion" >
+    <id column="version" property="version" jdbcType="VARCHAR" />
+    <result column="version_rank" property="versionRank" jdbcType="INTEGER" />
+    <result column="installed_rank" property="installedRank" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="script" property="script" jdbcType="VARCHAR" />
+    <result column="checksum" property="checksum" jdbcType="INTEGER" />
+    <result column="installed_by" property="installedBy" jdbcType="VARCHAR" />
+    <result column="installed_on" property="installedOn" jdbcType="TIMESTAMP" />
+    <result column="execution_time" property="executionTime" jdbcType="INTEGER" />
+    <result column="success" property="success" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    version, version_rank, installed_rank, description, type, script, checksum, installed_by, 
+    installed_on, execution_time, success
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.SchemaVersionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from schema_version
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from schema_version
+    where version = #{version,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from schema_version
+    where version = #{version,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.SchemaVersionExample" >
+    delete from schema_version
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.SchemaVersion" >
+    insert into schema_version (version, version_rank, installed_rank, 
+      description, type, script, 
+      checksum, installed_by, installed_on, 
+      execution_time, success)
+    values (#{version,jdbcType=VARCHAR}, #{versionRank,jdbcType=INTEGER}, #{installedRank,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{script,jdbcType=VARCHAR}, 
+      #{checksum,jdbcType=INTEGER}, #{installedBy,jdbcType=VARCHAR}, #{installedOn,jdbcType=TIMESTAMP}, 
+      #{executionTime,jdbcType=INTEGER}, #{success,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.SchemaVersion" >
+    insert into schema_version
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="versionRank != null" >
+        version_rank,
+      </if>
+      <if test="installedRank != null" >
+        installed_rank,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="script != null" >
+        script,
+      </if>
+      <if test="checksum != null" >
+        checksum,
+      </if>
+      <if test="installedBy != null" >
+        installed_by,
+      </if>
+      <if test="installedOn != null" >
+        installed_on,
+      </if>
+      <if test="executionTime != null" >
+        execution_time,
+      </if>
+      <if test="success != null" >
+        success,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="versionRank != null" >
+        #{versionRank,jdbcType=INTEGER},
+      </if>
+      <if test="installedRank != null" >
+        #{installedRank,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="script != null" >
+        #{script,jdbcType=VARCHAR},
+      </if>
+      <if test="checksum != null" >
+        #{checksum,jdbcType=INTEGER},
+      </if>
+      <if test="installedBy != null" >
+        #{installedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="installedOn != null" >
+        #{installedOn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executionTime != null" >
+        #{executionTime,jdbcType=INTEGER},
+      </if>
+      <if test="success != null" >
+        #{success,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.SchemaVersionExample" resultType="java.lang.Integer" >
+    select count(*) from schema_version
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update schema_version
+    <set >
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.versionRank != null" >
+        version_rank = #{record.versionRank,jdbcType=INTEGER},
+      </if>
+      <if test="record.installedRank != null" >
+        installed_rank = #{record.installedRank,jdbcType=INTEGER},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.script != null" >
+        script = #{record.script,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checksum != null" >
+        checksum = #{record.checksum,jdbcType=INTEGER},
+      </if>
+      <if test="record.installedBy != null" >
+        installed_by = #{record.installedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.installedOn != null" >
+        installed_on = #{record.installedOn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.executionTime != null" >
+        execution_time = #{record.executionTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.success != null" >
+        success = #{record.success,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update schema_version
+    set version = #{record.version,jdbcType=VARCHAR},
+      version_rank = #{record.versionRank,jdbcType=INTEGER},
+      installed_rank = #{record.installedRank,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      script = #{record.script,jdbcType=VARCHAR},
+      checksum = #{record.checksum,jdbcType=INTEGER},
+      installed_by = #{record.installedBy,jdbcType=VARCHAR},
+      installed_on = #{record.installedOn,jdbcType=TIMESTAMP},
+      execution_time = #{record.executionTime,jdbcType=INTEGER},
+      success = #{record.success,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.SchemaVersion" >
+    update schema_version
+    <set >
+      <if test="versionRank != null" >
+        version_rank = #{versionRank,jdbcType=INTEGER},
+      </if>
+      <if test="installedRank != null" >
+        installed_rank = #{installedRank,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="script != null" >
+        script = #{script,jdbcType=VARCHAR},
+      </if>
+      <if test="checksum != null" >
+        checksum = #{checksum,jdbcType=INTEGER},
+      </if>
+      <if test="installedBy != null" >
+        installed_by = #{installedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="installedOn != null" >
+        installed_on = #{installedOn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executionTime != null" >
+        execution_time = #{executionTime,jdbcType=INTEGER},
+      </if>
+      <if test="success != null" >
+        success = #{success,jdbcType=BIT},
+      </if>
+    </set>
+    where version = #{version,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.SchemaVersion" >
+    update schema_version
+    set version_rank = #{versionRank,jdbcType=INTEGER},
+      installed_rank = #{installedRank,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      script = #{script,jdbcType=VARCHAR},
+      checksum = #{checksum,jdbcType=INTEGER},
+      installed_by = #{installedBy,jdbcType=VARCHAR},
+      installed_on = #{installedOn,jdbcType=TIMESTAMP},
+      execution_time = #{executionTime,jdbcType=INTEGER},
+      success = #{success,jdbcType=BIT}
+    where version = #{version,jdbcType=VARCHAR}
+  </update>
+</mapper>

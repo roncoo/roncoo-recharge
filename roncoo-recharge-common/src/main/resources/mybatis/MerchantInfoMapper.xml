@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.roncoo.recharge.common.dao.impl.mapper.MerchantInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.MerchantInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="status_id" property="statusId" jdbcType="TINYINT" />
+    <result column="user_info_id" property="userInfoId" jdbcType="BIGINT" />
+    <result column="acct_info_id" property="acctInfoId" jdbcType="BIGINT" />
+    <result column="app_id" property="appId" jdbcType="VARCHAR" />
+    <result column="price_level" property="priceLevel" jdbcType="TINYINT" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="compay_name" property="compayName" jdbcType="VARCHAR" />
+    <result column="charging_limit" property="chargingLimit" jdbcType="INTEGER" />
+    <result column="warning_balance" property="warningBalance" jdbcType="INTEGER" />
+    <result column="deposit_balance" property="depositBalance" jdbcType="INTEGER" />
+    <result column="api_verify_type" property="apiVerifyType" jdbcType="TINYINT" />
+    <result column="app_seceret" property="appSeceret" jdbcType="VARCHAR" />
+    <result column="white_list" property="whiteList" jdbcType="VARCHAR" />
+    <result column="tx_verify_type" property="txVerifyType" jdbcType="TINYINT" />
+    <result column="pay_pwd" property="payPwd" jdbcType="CHAR" />
+    <result column="verify_code_key" property="verifyCodeKey" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, status_id, user_info_id, acct_info_id, app_id, price_level, 
+    nick_name, compay_name, charging_limit, warning_balance, deposit_balance, api_verify_type, 
+    app_seceret, white_list, tx_verify_type, pay_pwd, verify_code_key
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.MerchantInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from merchant_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from merchant_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from merchant_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.MerchantInfoExample" >
+    delete from merchant_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.MerchantInfo" >
+    insert into merchant_info (id, gmt_create, gmt_modified, 
+      status_id, user_info_id, acct_info_id, 
+      app_id, price_level, nick_name, 
+      compay_name, charging_limit, warning_balance, 
+      deposit_balance, api_verify_type, app_seceret, 
+      white_list, tx_verify_type, pay_pwd, 
+      verify_code_key)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{statusId,jdbcType=TINYINT}, #{userInfoId,jdbcType=BIGINT}, #{acctInfoId,jdbcType=BIGINT}, 
+      #{appId,jdbcType=VARCHAR}, #{priceLevel,jdbcType=TINYINT}, #{nickName,jdbcType=VARCHAR}, 
+      #{compayName,jdbcType=VARCHAR}, #{chargingLimit,jdbcType=INTEGER}, #{warningBalance,jdbcType=INTEGER}, 
+      #{depositBalance,jdbcType=INTEGER}, #{apiVerifyType,jdbcType=TINYINT}, #{appSeceret,jdbcType=VARCHAR}, 
+      #{whiteList,jdbcType=VARCHAR}, #{txVerifyType,jdbcType=TINYINT}, #{payPwd,jdbcType=CHAR}, 
+      #{verifyCodeKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.MerchantInfo" >
+    insert into merchant_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="statusId != null" >
+        status_id,
+      </if>
+      <if test="userInfoId != null" >
+        user_info_id,
+      </if>
+      <if test="acctInfoId != null" >
+        acct_info_id,
+      </if>
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="priceLevel != null" >
+        price_level,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="compayName != null" >
+        compay_name,
+      </if>
+      <if test="chargingLimit != null" >
+        charging_limit,
+      </if>
+      <if test="warningBalance != null" >
+        warning_balance,
+      </if>
+      <if test="depositBalance != null" >
+        deposit_balance,
+      </if>
+      <if test="apiVerifyType != null" >
+        api_verify_type,
+      </if>
+      <if test="appSeceret != null" >
+        app_seceret,
+      </if>
+      <if test="whiteList != null" >
+        white_list,
+      </if>
+      <if test="txVerifyType != null" >
+        tx_verify_type,
+      </if>
+      <if test="payPwd != null" >
+        pay_pwd,
+      </if>
+      <if test="verifyCodeKey != null" >
+        verify_code_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusId != null" >
+        #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="userInfoId != null" >
+        #{userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="acctInfoId != null" >
+        #{acctInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="priceLevel != null" >
+        #{priceLevel,jdbcType=TINYINT},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="compayName != null" >
+        #{compayName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingLimit != null" >
+        #{chargingLimit,jdbcType=INTEGER},
+      </if>
+      <if test="warningBalance != null" >
+        #{warningBalance,jdbcType=INTEGER},
+      </if>
+      <if test="depositBalance != null" >
+        #{depositBalance,jdbcType=INTEGER},
+      </if>
+      <if test="apiVerifyType != null" >
+        #{apiVerifyType,jdbcType=TINYINT},
+      </if>
+      <if test="appSeceret != null" >
+        #{appSeceret,jdbcType=VARCHAR},
+      </if>
+      <if test="whiteList != null" >
+        #{whiteList,jdbcType=VARCHAR},
+      </if>
+      <if test="txVerifyType != null" >
+        #{txVerifyType,jdbcType=TINYINT},
+      </if>
+      <if test="payPwd != null" >
+        #{payPwd,jdbcType=CHAR},
+      </if>
+      <if test="verifyCodeKey != null" >
+        #{verifyCodeKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.MerchantInfoExample" resultType="java.lang.Integer" >
+    select count(*) from merchant_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update merchant_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.gmtCreate != null" >
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModified != null" >
+        gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.statusId != null" >
+        status_id = #{record.statusId,jdbcType=TINYINT},
+      </if>
+      <if test="record.userInfoId != null" >
+        user_info_id = #{record.userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.acctInfoId != null" >
+        acct_info_id = #{record.acctInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.appId != null" >
+        app_id = #{record.appId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priceLevel != null" >
+        price_level = #{record.priceLevel,jdbcType=TINYINT},
+      </if>
+      <if test="record.nickName != null" >
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compayName != null" >
+        compay_name = #{record.compayName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chargingLimit != null" >
+        charging_limit = #{record.chargingLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.warningBalance != null" >
+        warning_balance = #{record.warningBalance,jdbcType=INTEGER},
+      </if>
+      <if test="record.depositBalance != null" >
+        deposit_balance = #{record.depositBalance,jdbcType=INTEGER},
+      </if>
+      <if test="record.apiVerifyType != null" >
+        api_verify_type = #{record.apiVerifyType,jdbcType=TINYINT},
+      </if>
+      <if test="record.appSeceret != null" >
+        app_seceret = #{record.appSeceret,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whiteList != null" >
+        white_list = #{record.whiteList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txVerifyType != null" >
+        tx_verify_type = #{record.txVerifyType,jdbcType=TINYINT},
+      </if>
+      <if test="record.payPwd != null" >
+        pay_pwd = #{record.payPwd,jdbcType=CHAR},
+      </if>
+      <if test="record.verifyCodeKey != null" >
+        verify_code_key = #{record.verifyCodeKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update merchant_info
+    set id = #{record.id,jdbcType=BIGINT},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      status_id = #{record.statusId,jdbcType=TINYINT},
+      user_info_id = #{record.userInfoId,jdbcType=BIGINT},
+      acct_info_id = #{record.acctInfoId,jdbcType=BIGINT},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      price_level = #{record.priceLevel,jdbcType=TINYINT},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      compay_name = #{record.compayName,jdbcType=VARCHAR},
+      charging_limit = #{record.chargingLimit,jdbcType=INTEGER},
+      warning_balance = #{record.warningBalance,jdbcType=INTEGER},
+      deposit_balance = #{record.depositBalance,jdbcType=INTEGER},
+      api_verify_type = #{record.apiVerifyType,jdbcType=TINYINT},
+      app_seceret = #{record.appSeceret,jdbcType=VARCHAR},
+      white_list = #{record.whiteList,jdbcType=VARCHAR},
+      tx_verify_type = #{record.txVerifyType,jdbcType=TINYINT},
+      pay_pwd = #{record.payPwd,jdbcType=CHAR},
+      verify_code_key = #{record.verifyCodeKey,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.MerchantInfo" >
+    update merchant_info
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusId != null" >
+        status_id = #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="userInfoId != null" >
+        user_info_id = #{userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="acctInfoId != null" >
+        acct_info_id = #{acctInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="priceLevel != null" >
+        price_level = #{priceLevel,jdbcType=TINYINT},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="compayName != null" >
+        compay_name = #{compayName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingLimit != null" >
+        charging_limit = #{chargingLimit,jdbcType=INTEGER},
+      </if>
+      <if test="warningBalance != null" >
+        warning_balance = #{warningBalance,jdbcType=INTEGER},
+      </if>
+      <if test="depositBalance != null" >
+        deposit_balance = #{depositBalance,jdbcType=INTEGER},
+      </if>
+      <if test="apiVerifyType != null" >
+        api_verify_type = #{apiVerifyType,jdbcType=TINYINT},
+      </if>
+      <if test="appSeceret != null" >
+        app_seceret = #{appSeceret,jdbcType=VARCHAR},
+      </if>
+      <if test="whiteList != null" >
+        white_list = #{whiteList,jdbcType=VARCHAR},
+      </if>
+      <if test="txVerifyType != null" >
+        tx_verify_type = #{txVerifyType,jdbcType=TINYINT},
+      </if>
+      <if test="payPwd != null" >
+        pay_pwd = #{payPwd,jdbcType=CHAR},
+      </if>
+      <if test="verifyCodeKey != null" >
+        verify_code_key = #{verifyCodeKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.MerchantInfo" >
+    update merchant_info
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      status_id = #{statusId,jdbcType=TINYINT},
+      user_info_id = #{userInfoId,jdbcType=BIGINT},
+      acct_info_id = #{acctInfoId,jdbcType=BIGINT},
+      app_id = #{appId,jdbcType=VARCHAR},
+      price_level = #{priceLevel,jdbcType=TINYINT},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      compay_name = #{compayName,jdbcType=VARCHAR},
+      charging_limit = #{chargingLimit,jdbcType=INTEGER},
+      warning_balance = #{warningBalance,jdbcType=INTEGER},
+      deposit_balance = #{depositBalance,jdbcType=INTEGER},
+      api_verify_type = #{apiVerifyType,jdbcType=TINYINT},
+      app_seceret = #{appSeceret,jdbcType=VARCHAR},
+      white_list = #{whiteList,jdbcType=VARCHAR},
+      tx_verify_type = #{txVerifyType,jdbcType=TINYINT},
+      pay_pwd = #{payPwd,jdbcType=CHAR},
+      verify_code_key = #{verifyCodeKey,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

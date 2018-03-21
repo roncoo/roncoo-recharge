@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.roncoo.recharge.common.dao.impl.mapper.AcctLogMapper" >
+  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.AcctLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="user_info_id" property="userInfoId" jdbcType="BIGINT" />
+    <result column="acct_info_id" property="acctInfoId" jdbcType="BIGINT" />
+    <result column="bill_type" property="billType" jdbcType="TINYINT" />
+    <result column="bill_status" property="billStatus" jdbcType="TINYINT" />
+    <result column="trade_type" property="tradeType" jdbcType="TINYINT" />
+    <result column="pay_serial_no" property="paySerialNo" jdbcType="BIGINT" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="total_balance" property="totalBalance" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, user_info_id, acct_info_id, bill_type, bill_status, 
+    trade_type, pay_serial_no, amount, total_balance
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.AcctLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from acct_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from acct_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from acct_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.AcctLogExample" >
+    delete from acct_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.AcctLog" >
+    insert into acct_log (id, gmt_create, gmt_modified, 
+      user_info_id, acct_info_id, bill_type, 
+      bill_status, trade_type, pay_serial_no, 
+      amount, total_balance)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{userInfoId,jdbcType=BIGINT}, #{acctInfoId,jdbcType=BIGINT}, #{billType,jdbcType=TINYINT}, 
+      #{billStatus,jdbcType=TINYINT}, #{tradeType,jdbcType=TINYINT}, #{paySerialNo,jdbcType=BIGINT}, 
+      #{amount,jdbcType=INTEGER}, #{totalBalance,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.AcctLog" >
+    insert into acct_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="userInfoId != null" >
+        user_info_id,
+      </if>
+      <if test="acctInfoId != null" >
+        acct_info_id,
+      </if>
+      <if test="billType != null" >
+        bill_type,
+      </if>
+      <if test="billStatus != null" >
+        bill_status,
+      </if>
+      <if test="tradeType != null" >
+        trade_type,
+      </if>
+      <if test="paySerialNo != null" >
+        pay_serial_no,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="totalBalance != null" >
+        total_balance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userInfoId != null" >
+        #{userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="acctInfoId != null" >
+        #{acctInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="billType != null" >
+        #{billType,jdbcType=TINYINT},
+      </if>
+      <if test="billStatus != null" >
+        #{billStatus,jdbcType=TINYINT},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=TINYINT},
+      </if>
+      <if test="paySerialNo != null" >
+        #{paySerialNo,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="totalBalance != null" >
+        #{totalBalance,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.AcctLogExample" resultType="java.lang.Integer" >
+    select count(*) from acct_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update acct_log
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.gmtCreate != null" >
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModified != null" >
+        gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userInfoId != null" >
+        user_info_id = #{record.userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.acctInfoId != null" >
+        acct_info_id = #{record.acctInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.billType != null" >
+        bill_type = #{record.billType,jdbcType=TINYINT},
+      </if>
+      <if test="record.billStatus != null" >
+        bill_status = #{record.billStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.tradeType != null" >
+        trade_type = #{record.tradeType,jdbcType=TINYINT},
+      </if>
+      <if test="record.paySerialNo != null" >
+        pay_serial_no = #{record.paySerialNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalBalance != null" >
+        total_balance = #{record.totalBalance,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update acct_log
+    set id = #{record.id,jdbcType=BIGINT},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      user_info_id = #{record.userInfoId,jdbcType=BIGINT},
+      acct_info_id = #{record.acctInfoId,jdbcType=BIGINT},
+      bill_type = #{record.billType,jdbcType=TINYINT},
+      bill_status = #{record.billStatus,jdbcType=TINYINT},
+      trade_type = #{record.tradeType,jdbcType=TINYINT},
+      pay_serial_no = #{record.paySerialNo,jdbcType=BIGINT},
+      amount = #{record.amount,jdbcType=INTEGER},
+      total_balance = #{record.totalBalance,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.AcctLog" >
+    update acct_log
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userInfoId != null" >
+        user_info_id = #{userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="acctInfoId != null" >
+        acct_info_id = #{acctInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="billType != null" >
+        bill_type = #{billType,jdbcType=TINYINT},
+      </if>
+      <if test="billStatus != null" >
+        bill_status = #{billStatus,jdbcType=TINYINT},
+      </if>
+      <if test="tradeType != null" >
+        trade_type = #{tradeType,jdbcType=TINYINT},
+      </if>
+      <if test="paySerialNo != null" >
+        pay_serial_no = #{paySerialNo,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="totalBalance != null" >
+        total_balance = #{totalBalance,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.AcctLog" >
+    update acct_log
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      user_info_id = #{userInfoId,jdbcType=BIGINT},
+      acct_info_id = #{acctInfoId,jdbcType=BIGINT},
+      bill_type = #{billType,jdbcType=TINYINT},
+      bill_status = #{billStatus,jdbcType=TINYINT},
+      trade_type = #{tradeType,jdbcType=TINYINT},
+      pay_serial_no = #{paySerialNo,jdbcType=BIGINT},
+      amount = #{amount,jdbcType=INTEGER},
+      total_balance = #{totalBalance,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

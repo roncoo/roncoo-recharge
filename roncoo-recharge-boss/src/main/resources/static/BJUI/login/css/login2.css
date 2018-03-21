@@ -1,0 +1,92 @@
+/*----------------------------------------------base css begin----------------------------------------------*/
+html {overflow-y:auto;border:0;}
+body {border:0;-webkit-text-size-adjust:none;}
+* html{background-image:url(about:blank);background-attachment:fixed;}
+body,textarea,input,button,select,keygen,legend{font:12px/1.5 \5b8b\4f53,"Microsoft YaHei",\5fae\8f6f\96c5\9ed1,arial;color:#333;outline:0;}
+address,article,aside,blockquote,body,button,details,dd,dl,dt,figcaption,figure,fieldset,form,footer,h1,h2,h3,h4,h5,h6,header,hgroup,hr,input,legend,li,menu,nav,ol,p,pre,section,textarea,td,th,ul {margin:0;padding:0;}
+address,b,caption,cite,code,dfn,em,i,th,var {font-style:normal;font-weight:500;}
+fieldset,img,iframe,abbr,acronym {border:0;}
+img {-ms-interpolation-mode: bicubic;max-width: 100%;}
+iframe {display:block;}
+li {list-style:none;}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:700;}
+sub,sup {position:relative;line-height:0;vertical-align:baseline;font-size:75%;}
+sup {top:-0.5em;}
+sub {bottom:-0.25em;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {display:block;}
+audio,canvas,video {display:inline-block;}
+* html audio,* html canvas,* html video {display:inline;}
+*+ html audio,*+ html canvas,*+ html video {display:inline;}
+button,input[type="button"],input[type="reset"],input[type="submit"] {-webkit-appearance: button; cursor: pointer;overflow: visible;}
+*+ html input[type="checkbox"],*+ html input[type="radio"] {height:13px;width:13px;}
+button::-moz-focus-inner,input::-moz-focus-inner {border:0;padding:0;}
+input,select,textarea,button {outline:none;vertical-align:middle;}
+select {height:24px;line-height:24px;padding:2px;width:149px;-moz-appearance:treeview;}
+textarea {overflow:auto;vertical-align: top;resize:none;}
+table {border-collapse:collapse;border-spacing:0;}
+caption,th {text-align:center;}
+q:before,q:after {quotes:none;}
+del {text-decoration:line-through;}
+:focus,a:focus {outline:none;}
+ins,a {text-decoration:none;}
+a{color:#06C;text-decoration:none;}
+.normal a{color:#666;}
+.normal a:hover{color:#000;}
+.list a:visied{color:#969;}
+input::-ms-clear,input::-ms-reveal {display:none;}
+
+.u_arrow_left {
+    border-color:transparent #57AF1A transparent transparent;border-width:5px 5px 5px 0;/*修改对应属性值*/
+    border-style:solid;display:-moz-inline-stack;display:inline-block;height:0;width:0;overflow:hidden;line-height:0;
+}
+*+ html .u_arrow_left {display:inline;}
+* html .u_arrow_left {display:inline;border-style:dashed solid dashed dashed;}
+
+.u_arrow_right {
+    border-color:transparent transparent transparent #57AF1A;border-width:5px 0 5px 5px;/*修改对应属性值*/
+    display:-moz-inline-stack;display:inline-block;border-style:solid;height:0;width:0;overflow:hidden;line-height:0;
+}
+*+ html .u_arrow_right {display:inline;}
+* html .u_arrow_right {display:inline;border-style:dashed dashed dashed solid;}
+
+.f_cf:before,.f_cf:after {content:"";display:table;}
+.f_cf:after {clear:both;overflow:hidden;}
+.f_cf {zoom:1;}
+
+.f_fl {display:inline;float:left;}
+.f_fr {display:inline;float:right;}
+.f_tac{text-align: center;}
+
+/* 公共部分样式开始，可以单独使用----------------------------------------------------------------------------------------- */
+
+.login_register_header{width: 960px;margin: 0 auto;padding-top: 10px;}
+.header_link {height: 47px;line-height: 47px;}
+.header_link li{margin-left: 34px;}
+.header_link li a{color: #666666;font-size: 14px;}
+.header_link li a:hover{color: #ff5400;transform:scale(0.5);-moz-transform:scale(0.5)}
+
+.login_content{width: 100%;height: 600px;background-color:#fe6a22;}
+.login_form{background-color: #fff;width: 313px;height: 410px;background: #fff url(../images/bg.png) no-repeat left center;margin: 0 auto;padding:95px 0  95px 682px;background-color: #fe6a22;}
+
+.login_tab{width: 100%;height: 350px;background-color: #fff;padding: 0  12px;border-radius: 5px;}
+.login_form h2{font-size:16px;color:#ff5400;border-bottom: 1px solid #d5d5d5;padding: 28px 0 9px 6px; }
+.login_tab .import input{border: 1px solid #d3d3d3;border-radius: 4px;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;padding: 10px 10px 10px 35px;transition: border-color 0.1ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;width:268px;}
+.login_tab .import input:focus{ border-color: #fe6a22;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(254, 106, 34, 0.6);outline: 0 none;}
+.login_tab .import input.account{background: url(../images/account.png) no-repeat 9px center;}
+.login_tab .import input.password{background: url(../images/password.png) no-repeat 9px center;margin-bottom: 14px;}
+.login_tab .import input.verification{background: url(../images/password.png) no-repeat 9px center;margin-bottom: 14px;width:130px;}
+
+.login_tab .import input.select{font-size: 14px;color: #666；}
+.login_tab  input[type=submit]{background-color: #ff5400;width: 100%;border: none;height: 44px;line-height: 44px;text-align: center;color: #fff;font-size: 20px;margin-top: 20px;border-radius: 5px;}
+.login_tab  .forget_ps_w a{color: #4195f2;}
+.login_tab .p1{margin-top: 20px;}
+.login_tab .p2{margin-top: 20px;}
+.login_tab .p3{margin-top: 10px;}
+.login_tab .register{margin-top: 25px;padding-top: 15px;border-top: 1px solid #d5d5d5;}
+.login_tab .register a.f_fr{color: #333;}
+
+.login_register_footer .contact{width:220px;margin: 0 auto;margin-top: 30px;}
+.login_register_footer .contact ul li{width: 33.333%;}
+.login_register_footer .contact ul li a{padding-right: 5px;border-right: 1px solid #d5d5d5;color: #666666;}
+.company_information{margin-top: 12px;color: #666666;}
+.code{    height: 35px;    display: table-cell;   float: right;    vertical-align: middle;    text-align: center;    margin-right: 10px;}

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.roncoo.recharge.common.dao.impl.mapper.ItemSupplyMapper" >
+  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.ItemSupply" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="item_status" property="itemStatus" jdbcType="TINYINT" />
+    <result column="item_id" property="itemId" jdbcType="BIGINT" />
+    <result column="item_no" property="itemNo" jdbcType="VARCHAR" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="supply_info_id" property="supplyInfoId" jdbcType="BIGINT" />
+    <result column="supply_code" property="supplyCode" jdbcType="VARCHAR" />
+    <result column="supply_name" property="supplyName" jdbcType="VARCHAR" />
+    <result column="priority" property="priority" jdbcType="TINYINT" />
+    <result column="loss_type" property="lossType" jdbcType="TINYINT" />
+    <result column="loss_time" property="lossTime" jdbcType="INTEGER" />
+    <result column="face_price" property="facePrice" jdbcType="VARCHAR" />
+    <result column="cost_price" property="costPrice" jdbcType="INTEGER" />
+    <result column="supply_product_code" property="supplyProductCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, item_status, item_id, item_no, item_name, supply_info_id, 
+    supply_code, supply_name, priority, loss_type, loss_time, face_price, cost_price, 
+    supply_product_code
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.ItemSupplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from item_supply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from item_supply
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from item_supply
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.ItemSupplyExample" >
+    delete from item_supply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.ItemSupply" >
+    insert into item_supply (id, gmt_create, gmt_modified, 
+      item_status, item_id, item_no, 
+      item_name, supply_info_id, supply_code, 
+      supply_name, priority, loss_type, 
+      loss_time, face_price, cost_price, 
+      supply_product_code)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{itemStatus,jdbcType=TINYINT}, #{itemId,jdbcType=BIGINT}, #{itemNo,jdbcType=VARCHAR}, 
+      #{itemName,jdbcType=VARCHAR}, #{supplyInfoId,jdbcType=BIGINT}, #{supplyCode,jdbcType=VARCHAR}, 
+      #{supplyName,jdbcType=VARCHAR}, #{priority,jdbcType=TINYINT}, #{lossType,jdbcType=TINYINT}, 
+      #{lossTime,jdbcType=INTEGER}, #{facePrice,jdbcType=VARCHAR}, #{costPrice,jdbcType=INTEGER}, 
+      #{supplyProductCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.ItemSupply" >
+    insert into item_supply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="itemStatus != null" >
+        item_status,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="itemNo != null" >
+        item_no,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="supplyInfoId != null" >
+        supply_info_id,
+      </if>
+      <if test="supplyCode != null" >
+        supply_code,
+      </if>
+      <if test="supplyName != null" >
+        supply_name,
+      </if>
+      <if test="priority != null" >
+        priority,
+      </if>
+      <if test="lossType != null" >
+        loss_type,
+      </if>
+      <if test="lossTime != null" >
+        loss_time,
+      </if>
+      <if test="facePrice != null" >
+        face_price,
+      </if>
+      <if test="costPrice != null" >
+        cost_price,
+      </if>
+      <if test="supplyProductCode != null" >
+        supply_product_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemStatus != null" >
+        #{itemStatus,jdbcType=TINYINT},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyInfoId != null" >
+        #{supplyInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="supplyCode != null" >
+        #{supplyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyName != null" >
+        #{supplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=TINYINT},
+      </if>
+      <if test="lossType != null" >
+        #{lossType,jdbcType=TINYINT},
+      </if>
+      <if test="lossTime != null" >
+        #{lossTime,jdbcType=INTEGER},
+      </if>
+      <if test="facePrice != null" >
+        #{facePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="costPrice != null" >
+        #{costPrice,jdbcType=INTEGER},
+      </if>
+      <if test="supplyProductCode != null" >
+        #{supplyProductCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.ItemSupplyExample" resultType="java.lang.Integer" >
+    select count(*) from item_supply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update item_supply
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.gmtCreate != null" >
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModified != null" >
+        gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.itemStatus != null" >
+        item_status = #{record.itemStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.itemId != null" >
+        item_id = #{record.itemId,jdbcType=BIGINT},
+      </if>
+      <if test="record.itemNo != null" >
+        item_no = #{record.itemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemName != null" >
+        item_name = #{record.itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplyInfoId != null" >
+        supply_info_id = #{record.supplyInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.supplyCode != null" >
+        supply_code = #{record.supplyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplyName != null" >
+        supply_name = #{record.supplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priority != null" >
+        priority = #{record.priority,jdbcType=TINYINT},
+      </if>
+      <if test="record.lossType != null" >
+        loss_type = #{record.lossType,jdbcType=TINYINT},
+      </if>
+      <if test="record.lossTime != null" >
+        loss_time = #{record.lossTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.facePrice != null" >
+        face_price = #{record.facePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.costPrice != null" >
+        cost_price = #{record.costPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.supplyProductCode != null" >
+        supply_product_code = #{record.supplyProductCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update item_supply
+    set id = #{record.id,jdbcType=BIGINT},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      item_status = #{record.itemStatus,jdbcType=TINYINT},
+      item_id = #{record.itemId,jdbcType=BIGINT},
+      item_no = #{record.itemNo,jdbcType=VARCHAR},
+      item_name = #{record.itemName,jdbcType=VARCHAR},
+      supply_info_id = #{record.supplyInfoId,jdbcType=BIGINT},
+      supply_code = #{record.supplyCode,jdbcType=VARCHAR},
+      supply_name = #{record.supplyName,jdbcType=VARCHAR},
+      priority = #{record.priority,jdbcType=TINYINT},
+      loss_type = #{record.lossType,jdbcType=TINYINT},
+      loss_time = #{record.lossTime,jdbcType=INTEGER},
+      face_price = #{record.facePrice,jdbcType=VARCHAR},
+      cost_price = #{record.costPrice,jdbcType=INTEGER},
+      supply_product_code = #{record.supplyProductCode,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.ItemSupply" >
+    update item_supply
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemStatus != null" >
+        item_status = #{itemStatus,jdbcType=TINYINT},
+      </if>
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="itemNo != null" >
+        item_no = #{itemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyInfoId != null" >
+        supply_info_id = #{supplyInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="supplyCode != null" >
+        supply_code = #{supplyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyName != null" >
+        supply_name = #{supplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        priority = #{priority,jdbcType=TINYINT},
+      </if>
+      <if test="lossType != null" >
+        loss_type = #{lossType,jdbcType=TINYINT},
+      </if>
+      <if test="lossTime != null" >
+        loss_time = #{lossTime,jdbcType=INTEGER},
+      </if>
+      <if test="facePrice != null" >
+        face_price = #{facePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="costPrice != null" >
+        cost_price = #{costPrice,jdbcType=INTEGER},
+      </if>
+      <if test="supplyProductCode != null" >
+        supply_product_code = #{supplyProductCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.ItemSupply" >
+    update item_supply
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      item_status = #{itemStatus,jdbcType=TINYINT},
+      item_id = #{itemId,jdbcType=BIGINT},
+      item_no = #{itemNo,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      supply_info_id = #{supplyInfoId,jdbcType=BIGINT},
+      supply_code = #{supplyCode,jdbcType=VARCHAR},
+      supply_name = #{supplyName,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=TINYINT},
+      loss_type = #{lossType,jdbcType=TINYINT},
+      loss_time = #{lossTime,jdbcType=INTEGER},
+      face_price = #{facePrice,jdbcType=VARCHAR},
+      cost_price = #{costPrice,jdbcType=INTEGER},
+      supply_product_code = #{supplyProductCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
