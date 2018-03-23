@@ -14,7 +14,7 @@ import com.xiaoleilu.hutool.http.HttpUtil;
 public class RechargeFlowTest {
 
 	public static void main(String[] args) throws InterruptedException {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 50; i++) {
 			Thread.sleep(1);
 			recharge();
 		}
