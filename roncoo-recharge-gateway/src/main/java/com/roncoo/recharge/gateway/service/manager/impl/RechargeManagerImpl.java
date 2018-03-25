@@ -354,7 +354,7 @@ public class RechargeManagerImpl extends BaseRoncoo implements RechargeManager {
 			orderTradePayDao.updateById(orderTradePay);
 
 			// 修改订单状态为处理中
-			orderTrade.setOrderStatus(OrderStatusEnum.FAIL.getCode());
+			orderTrade.setOrderStatus(OrderStatusEnum.WARTING.getCode());
 			orderTradeDao.updateById(orderTrade);
 			return Result.success(orderTrade);
 		} catch (Exception e) {
