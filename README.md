@@ -12,9 +12,35 @@
 4. 权限管理框架：Shiro
 5. 后台页面框架：B-JUI
 
+### 平台结构说明
+├─roncoo-recharge ----------------------------父项目，公共依赖
+│  │
+│  ├─roncoo-recharge-api
+│  │  │
+│  │  ├─roncoo-recharge-api-core --------------上游接口的封装：对接上游，只需要对其接口进行实现
+│  │  │
+│  │  ├─roncoo-recharge-api-longguo -----------上游接口实现demo1
+│  │  │
+│  │  └─roncoo-recharge-api-roncoo ------------上游接口实现demo2
+│  │
+│  ├─roncoo-recharge-boss ---------------------运营管理后台
+│  │
+│  ├─roncoo-recharge-crontab ------------------定时任务工程
+│  │
+│  ├─roncoo-recharge-gateway ------------------网关工程：核心流程请看帮助文档
+│  │
+│  ├─roncoo-recharge-util ---------------------工具类
+│  │
+│  ├─roncoo-recharge-web ----------------------下游管理后台
+│  │
+├──├─doc
+│  │  │
+│  │  ├─images --------------------------------项目演示截图
+│  │  │
+└──└──└─rc_recharge.sql------------------------项目SQL脚本：带有demo数据
+
 ### 帮助文档
 ![流程图](/doc/images/90.png)
-
 
 ### 官方QQ群
 * QQ2群: 601146630
