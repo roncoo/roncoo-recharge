@@ -24,6 +24,7 @@ Lombok是一个可以通过简单的注解形式来帮助我们简化消除一�
 
 #### 2. IntelliJ IDEA使用方法
 安装插件，如图所示
+
 ![流程图](/doc/images/lombok1.png)
 
 ### 项目结构
