@@ -13,12 +13,12 @@
 5. 后台页面框架：B-JUI
 
 ### Lombok使用
-Lombok是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得很臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。
+简介：Lombok是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得很臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。
 [官方地址：https://projectlombok.org/](https://projectlombok.org/)
 
 #### 1. Eclipse使用方法
+把lombok.jar放入Eclipse的根目录，在eclipse.ini配置文件的最后加上
 ```
-#把lombok.jar放入Eclipse的根目录，在eclipse.ini配置文件的最后加上
 -javaagent:lombok.jar 
 ```
 
