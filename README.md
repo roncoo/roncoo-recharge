@@ -42,6 +42,8 @@ Lombok是一个可以通过简单的注解形式来帮助我们简化消除一�
 │  │
 │  ├─roncoo-recharge-boss ---------------------运营管理后台
 │  │
+│  ├─roncoo-recharge-common -------------------工程共用模块
+│  │
 │  ├─roncoo-recharge-crontab ------------------定时任务工程
 │  │
 │  ├─roncoo-recharge-gateway ------------------网关工程：核心流程请看帮助文档
