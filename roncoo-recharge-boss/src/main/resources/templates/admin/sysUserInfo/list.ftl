@@ -20,7 +20,9 @@
 			
 			<br />
 			<br />
+			<@shiro.hasPermission name="/admin/sysUserInfo/add">
 			<a href="${base}/admin/sysUserInfo/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysUserInfo-add" data-options="{title:'添加', height:350}">添加 </a>
+		    </@shiro.hasPermission>
 		</div>
 	</form>
 </div>
@@ -54,7 +56,9 @@
 				<td>
 					<a href="${base}/admin/sysUserInfo/view?id=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="sysUserInfo-view" data-options="{title:'查看', height:350}">查看 </a>
 					<a href="${base}/admin/sysUserInfo/edit?id=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="sysUserInfo-edit" data-options="{title:'修改', height:400}">修改 </a>
+					<@shiro.hasPermission name="/admin/sysUserInfo/delete">
 					<a href="${base}/admin/sysUserInfo/delete?id=${bean.id}" class="btn btn-red" data-toggle="doajax" data-id="sysUserInfo-delete" data-confirm-msg="确定要删除吗？">删除</a>
+					</@shiro.hasPermission>
 					<#if bean.userType == 1>
 				    <a href="${base}/admin/sysRoleUser/set?userInfoId=${bean.id}" class="btn btn-orange" data-toggle="dialog" data-id="sysUser-set" data-options="{title:'设置角色', height:350, width:800}">设置角色 </a>
                     </#if>
