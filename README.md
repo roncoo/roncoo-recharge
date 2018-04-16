@@ -16,6 +16,17 @@
 4. 权限管理框架：Shiro
 5. 后台页面框架：B-JUI
 
+### 加速maven构建
+在maven的settings.xml 文件里配置mirrors的子节点，添加如下mirror
+```
+<mirror>
+    <id>nexus-aliyun</id>
+    <mirrorOf>*</mirrorOf>
+    <name>Nexus aliyun</name>
+    <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+</mirror>
+```
+
 ### Lombok使用
 Lombok是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得很臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。
 [官方地址：https://projectlombok.org/](https://projectlombok.org/)
