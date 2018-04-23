@@ -15,7 +15,7 @@ import com.roncoo.shiro.freemarker.ShiroTags;
  * shiro配置类
  */
 @Component
-public class ShiroConfiguration {
+public class ShiroComponent {
 
 	@Autowired
 	private FreeMarkerConfigurer freeMarkerConfigurer;

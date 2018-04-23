@@ -45,7 +45,7 @@ import com.xiaoleilu.hutool.util.CollectionUtil;
  * 拦截器
  */
 @Configuration
-public class WebMvcConfigurer {
+public class WebMvcConfiguration {
 
 	/**
 	 * ShiroRealm
