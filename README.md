@@ -16,11 +16,6 @@
 4. 权限管理框架：Shiro
 5. 后台页面框架：B-JUI
 
-### 项目推荐
-### roncoo-recharge：[码云地址](https://gitee.com/roncoocom/roncoo-recharge) | [Github地址](https://github.com/roncoo/roncoo-recharge)
-### roncoo-jui-springboot：[码云地址](https://gitee.com/roncoocom/roncoo-jui-springboot) | [Github地址](https://github.com/roncoo/roncoo-jui-springboot)
-
-
 ### 加速maven构建
 在maven的settings.xml 文件里配置mirrors的子节点，添加如下mirror
 ```
@@ -98,3 +93,7 @@ Lombok是一个可以通过简单的注解形式来帮助我们简化消除一�
 ![用户管理](/doc/images/6.png)
 ![商品管理](/doc/images/7.png)
 ![商品管理](/doc/images/8.png)
+
+## 项目推荐
+### roncoo-recharge：[码云地址](https://gitee.com/roncoocom/roncoo-recharge) | [Github地址](https://github.com/roncoo/roncoo-recharge)
+### roncoo-jui-springboot：[码云地址](https://gitee.com/roncoocom/roncoo-jui-springboot) | [Github地址](https://github.com/roncoo/roncoo-jui-springboot)
