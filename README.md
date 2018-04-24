@@ -16,6 +16,11 @@
 4. 权限管理框架：Shiro
 5. 后台页面框架：B-JUI
 
+### 项目推荐
+### roncoo-recharge：[码云地址](https://gitee.com/roncoocom/roncoo-recharge) | [Github地址](https://github.com/roncoo/roncoo-recharge)
+### roncoo-jui-springboot：[码云地址](https://gitee.com/roncoocom/roncoo-jui-springboot) | [Github地址](https://github.com/roncoo/roncoo-jui-springboot)
+
+
 ### 加速maven构建
 在maven的settings.xml 文件里配置mirrors的子节点，添加如下mirror
 ```
