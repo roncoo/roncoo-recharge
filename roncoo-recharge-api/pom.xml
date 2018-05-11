@@ -12,7 +12,6 @@
 
   <modules>
     <module>roncoo-recharge-api-core</module>
-    <module>roncoo-recharge-api-huiju</module>
     <module>roncoo-recharge-api-longguo</module>
     <module>roncoo-recharge-api-roncoo</module>
   </modules>
