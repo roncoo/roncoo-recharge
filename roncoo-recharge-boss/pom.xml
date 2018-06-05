@@ -6,14 +6,14 @@
 	<parent>
 		<groupId>com.roncoo.recharge</groupId>
 		<artifactId>roncoo-recharge</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</parent>
 
 	<artifactId>roncoo-recharge-boss</artifactId>
 	<packaging>jar</packaging>
 
 	<name>roncoo-recharge-boss</name>
-	<description>龙果充值平台</description>
+	<description>龙果充值-管理后台</description>
 
 	<dependencies>
 		<dependency>
