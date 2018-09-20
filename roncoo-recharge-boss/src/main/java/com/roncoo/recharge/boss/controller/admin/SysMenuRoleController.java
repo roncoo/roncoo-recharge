@@ -61,7 +61,7 @@ public class SysMenuRoleController extends BaseController {
 		StringBuilder sb = new StringBuilder();
 		if (CollectionUtil.isNotEmpty(list)) {
 			for (SysMenuRoleVO p : list) {
-				sb.append(p.getId()).append(",");
+				sb.append(p.getMenuId()).append(",");
 			}
 			sb = sb.delete(sb.length() - 1, sb.length());
 		}
