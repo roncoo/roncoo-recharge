@@ -5,11 +5,11 @@ package com.roncoo.recharge.boss.service;
 
 import java.util.HashMap;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.roncoo.recharge.boss.bean.qo.OrderTradeQO;
 import com.roncoo.recharge.boss.bean.vo.OrderTradeVO;
@@ -47,7 +47,7 @@ public class OrderTradeService {
 			c.andTradeNoGreaterThanOrEqualTo(qo.getTradeNo());
 		}
 
-		if (StringUtils.isNotBlank(qo.getOrderNo())) {
+		if (StringUtils.hasText(qo.getOrderNo())) {
 			c.andOrderNoLike(PageUtil.likeRight(qo.getOrderNo()));
 		}
 

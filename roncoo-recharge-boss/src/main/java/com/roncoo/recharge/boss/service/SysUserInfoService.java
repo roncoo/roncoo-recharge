@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.roncoo.recharge.boss.bean.qo.SysUserInfoQO;
 import com.roncoo.recharge.boss.bean.vo.SysUserInfoVO;
@@ -54,10 +54,10 @@ public class SysUserInfoService {
 	public Page<SysUserInfoVO> listForPage(int pageCurrent, int pageSize, SysUserInfoQO qo) {
 		SysUserInfoExample example = new SysUserInfoExample();
 		Criteria c = example.createCriteria();
-		if (StringUtils.isNotBlank(qo.getLoginName())) {
+		if (StringUtils.hasText(qo.getLoginName())) {
 			c.andLoginNameLike(PageUtil.likeRight(qo.getLoginName()));
 		}
-		if (StringUtils.isNotBlank(qo.getMobile())) {
+		if (StringUtils.hasText(qo.getMobile())) {
 			c.andMobileLike(PageUtil.likeRight(qo.getMobile()));
 		}
 		if (ObjectUtil.isNotNull(qo.getUserType())) {

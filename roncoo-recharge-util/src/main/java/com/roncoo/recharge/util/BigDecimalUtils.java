@@ -5,13 +5,13 @@ package com.roncoo.recharge.util;
 
 import java.math.BigDecimal;
 
-import org.apache.commons.lang.StringUtils;
+import org.springframework.util.StringUtils;
 
 public final class BigDecimalUtils {
 	private BigDecimalUtils() {
 
 	}
-	
+
 	/**
 	 * 元转化成厘
 	 */
@@ -46,7 +46,7 @@ public final class BigDecimalUtils {
 		BigDecimal b2 = new BigDecimal(1000);
 		return b1.divide(b2).setScale(2, BigDecimal.ROUND_HALF_UP).toString();
 	}
-	
+
 	/**
 	 * 厘转换成元
 	 */
