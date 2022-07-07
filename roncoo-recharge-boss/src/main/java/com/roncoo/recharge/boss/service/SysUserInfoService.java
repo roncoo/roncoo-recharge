@@ -3,16 +3,6 @@
  */
 package com.roncoo.recharge.boss.service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.apache.shiro.SecurityUtils;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
-
 import com.roncoo.recharge.boss.bean.qo.SysUserInfoQO;
 import com.roncoo.recharge.boss.bean.vo.SysUserInfoVO;
 import com.roncoo.recharge.common.dao.AcctInfoDao;
@@ -34,6 +24,15 @@ import com.roncoo.recharge.util.enums.UserTypeEnum;
 import com.xiaoleilu.hutool.crypto.DigestUtil;
 import com.xiaoleilu.hutool.crypto.SecureUtil;
 import com.xiaoleilu.hutool.util.ObjectUtil;
+import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 后台用户信息
@@ -96,6 +95,7 @@ public class SysUserInfoService {
 			merchantInfo.setAcctInfoId(acctInfoId);
 			merchantInfo.setPriceLevel(PriceLevelEnum.ONE.getCode());
 			merchantInfo.setApiVerifyType(ApiVerifyTypeEnum.SECRET.getCode());
+			merchantInfo.setStatusId(record.getStatusId());
 			merchantInfoDao.save(merchantInfo);
 		}
 

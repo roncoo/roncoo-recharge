@@ -1,11 +1,11 @@
 <#include "/macro/base.ftl" />
 <div class="bjui-pageHeader">
-    <form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/sysUserInfo/lookupUser" method="post">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/sysUserInfo/lookup" method="post">
         <@pageHeadr />
         <div class="bjui-searchBar">
             <label>账号：</label>
             <input type="text" name="number" value="" class="form-control" size="10">&nbsp;
-            
+
             <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
             <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
         </div>
