@@ -159,7 +159,7 @@ public class SysUserInfoService {
 		if (sysUserInfo.getPwd().equals(DigestUtil.md5Hex(sysUserInfo.getSalt() + oldPwd))) {
 			SysUserInfo user = new SysUserInfo();
 			user.setSalt(SecureUtil.simpleUUID());
-			user.setPwd(DigestUtil.md5Hex(sysUserInfo.getSalt() + newPwd));
+			user.setPwd(DigestUtil.md5Hex(user.getSalt() + newPwd));
 			user.setId(userInfoId);
 			return dao.updateById(user);
 		}
